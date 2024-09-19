@@ -1,19 +1,20 @@
-import Section from '@/components/shared/section';
-import Button from '@/components/ui/button';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
+import Dashboard from '@/components/dashboard/Dashboard';
+
+import { fetchSubtitles } from '@/store/slices/subtitles/actions';
+
+import { TAppDispatch } from '@/store';
 
 const DashboardContainer = () => {
-    return (
-        <Section className="items-start">
-            <div className="w-full">
-                <div className="flex items-center justify-between">
-                    <h2 className="text-2xl font-semibold text-white">Dashboard</h2>
-                    <Button>Generate Subtitle</Button>
-                </div>
+    const dispatch = useDispatch<TAppDispatch>();
 
-                <div>Subtitles</div>
-            </div>
-        </Section>
-    );
+    useEffect(() => {
+        dispatch(fetchSubtitles());
+    }, [dispatch]);
+
+    return <Dashboard />;
 };
 
 export default DashboardContainer;

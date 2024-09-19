@@ -4,7 +4,7 @@ import { twMerge } from 'tailwind-merge';
 
 import { TInputProps } from '@/components/ui/input/types';
 
-const Input: React.FC<TInputProps> = (props) => {
+const Input = React.forwardRef<HTMLInputElement, TInputProps>((props, ref) => {
     const { Icon, className: inputClassName, ...inputRemainingAttrs } = props;
 
     return (
@@ -22,6 +22,7 @@ const Input: React.FC<TInputProps> = (props) => {
                     </span>
                 )}
                 <Field
+                    innerRef={ref}
                     className={twMerge(
                         'w-full grow select-none bg-transparent p-0.5 outline-none placeholder:text-white',
                         inputClassName
@@ -33,6 +34,6 @@ const Input: React.FC<TInputProps> = (props) => {
             <ErrorMessage className="px-5 py-1 text-rose-600" name={inputRemainingAttrs.name} component="p" />
         </div>
     );
-};
+});
 
 export default Input;

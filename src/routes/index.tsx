@@ -17,6 +17,7 @@ const RequestEmailVerification = React.lazy(() => import('@/components/auth/requ
 const Settings = React.lazy(() => import('@/components/settings'));
 const Dashboard = React.lazy(() => import('@/components/dashboard'));
 const GenerateSubtitleContainer = React.lazy(() => import('@/components/subtitles/generate'));
+const SubtitleInDetailContainer = React.lazy(() => import('@/components/subtitles/subtitle-in-detail'));
 
 const AppRoutes = () => {
     const hasAutoLoginDone = useSelector((store: TAppStore) => store.auth.hasAutoLoginDone);
@@ -47,6 +48,7 @@ const AppRoutes = () => {
                 <Route path="/subtitles">
                     <Route path="" element={<Navigate to="/@me" />} />
                     <Route path="generate" element={<GenerateSubtitleContainer />} />
+                    <Route path=":subtitleId" element={<SubtitleInDetailContainer />} />
                 </Route>
 
                 <Route path="settings" element={<Settings />} />
