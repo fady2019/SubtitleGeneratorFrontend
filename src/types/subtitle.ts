@@ -6,6 +6,7 @@ export type TSubtitle = {
     finish_date: string | null;
     created_at: string;
     language: string | null;
+    translate: boolean;
     user_id: string;
 };
 

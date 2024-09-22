@@ -42,6 +42,7 @@ export const generateSubtitle = (subtitleData: TGenerateSubtitleData<File>, navi
         const formData = new FormData();
         formData.append('title', subtitleData.title);
         formData.append('media_file', subtitleData.file);
+        formData.append('translate', String(subtitleData.translate));
 
         const { success } = await AxiosUtil.sendRequest({
             url: `api/subtitles/begin-generation`,

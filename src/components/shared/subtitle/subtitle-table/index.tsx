@@ -20,6 +20,7 @@ const SubtitleTableContainer: React.FC<TSubtitleTableContainerProps> = (props) =
         title: 'Title',
         status: 'Status',
         language: 'Language',
+        translate: 'Translated',
         created_at: 'Creation Date',
         start_date: 'Start Date',
         finish_date: 'Finish Date',
@@ -28,6 +29,7 @@ const SubtitleTableContainer: React.FC<TSubtitleTableContainerProps> = (props) =
     const subtitleDataTableBody = subtitles.map((subtitle) => ({
         ...subtitle,
         language: <SubtitleLanguage languageAbbreviation={subtitle.language} />,
+        translate: subtitle.translate ? 'Yes' : 'No',
         title: <SubtitleTitle subtitle={subtitle} />,
         status: <SubtitleStatus subtitle={subtitle} />,
         created_at: <SubtitleDate date={subtitle.created_at} />,

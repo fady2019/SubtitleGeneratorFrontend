@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import Section from '@/components/shared/section';
 import Form from '@/components/ui/form';
 import Input from '@/components/ui/input';
+import Checkbox from '@/components/ui/checkbox';
 import Button from '@/components/ui/button';
 
 import { generateSubtitle } from '@/store/slices/subtitles/actions';
@@ -19,7 +20,7 @@ const GenerateSubtitleContainer = () => {
     const dispatch = useDispatch<TAppDispatch>();
     const navigate = useNavigate();
 
-    const initialValues: TGenerateSubtitleData<string> = { title: '', file: '' };
+    const initialValues: TGenerateSubtitleData<string> = { title: '', file: '', translate: false };
 
     const validationSchema = Yup.object({
         title: Yup.string().trim().required('this field is required'),
@@ -42,6 +43,7 @@ const GenerateSubtitleContainer = () => {
                 >
                     <Input type="text" name="title" placeholder="Title" />
                     <Input ref={audioInputRef} type="file" name="file" accept="audio/*, video/*" />
+                    <Checkbox id="translate" name="translate" label="Translate to English" />
                     <Button className="mt-2.5" large>
                         Generate
                     </Button>
