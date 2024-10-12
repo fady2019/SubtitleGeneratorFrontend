@@ -1,10 +1,10 @@
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 const useCountdown = (initCount: number = 0) => {
     const countTimerRef = useRef<NodeJS.Timeout>();
     const [count, setCount] = useState<number>(initCount);
 
-    const startCount = (initCount: number) => {
+    const startCount = useCallback((initCount: number) => {
         if (initCount <= 0) {
             throw new Error('initCount must be positive number');
         }
@@ -23,7 +23,7 @@ const useCountdown = (initCount: number = 0) => {
                 return curr - 1;
             });
         }, 1000);
-    };
+    }, []);
 
     return { count, startCount };
 };
