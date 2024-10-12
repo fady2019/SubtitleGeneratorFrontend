@@ -113,11 +113,17 @@ export const setPassword = (token: string, requestBody: TSetPasswordData, naviga
     };
 };
 
-export const requestEmailVerification = (userId: string) => {
+export const requestEmailVerification = (userId: string, navigate: TNavigateFunction) => {
     return async () => {
-        await AxiosUtil.sendRequest({
+        const { data, success } = await AxiosUtil.sendRequest({
             url: `api/auth/request-email-verification/${userId}`,
         });
+
+        if (!success || !data['already_verified']) {
+            return;
+        }
+
+        navigate('/auth/login');
     };
 };
 

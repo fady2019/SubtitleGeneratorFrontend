@@ -31,7 +31,7 @@ const RequestEmailVerificationContainer = () => {
             return;
         }
 
-        dispatch(requestEmailVerification(userInfo.id));
+        dispatch(requestEmailVerification(userInfo.id, navigate));
 
         startTryAgainCount(30);
     };
