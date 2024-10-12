@@ -58,12 +58,13 @@ export const signup = (requestBody: TSignupData, navigate: TNavigateFunction) =>
             data: requestBody,
         });
 
+        dispatch(storeAuthSliceActions.setIsAuth(false));
+
         if (!success) {
-            return dispatch(storeAuthSliceActions.setIsAuth(false));
+            return;
         }
 
         dispatch(storeUserSliceActions.setUserInfo(data));
-        dispatch(storeAuthSliceActions.setIsAuth(true));
         navigate('/auth/verify-email');
     };
 };
