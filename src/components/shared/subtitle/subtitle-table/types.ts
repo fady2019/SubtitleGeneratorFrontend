@@ -1,5 +1,5 @@
 import { TSubtitle } from '@/types/subtitle';
-import { TSubtitleRowActionContainerProps } from '../subtitle-actions/types';
+import { TSubtitleRowActionContainerProps } from '@/components/shared/subtitle/subtitle-actions/types';
 import { TTableContainerProps } from '@/components/ui/table/types';
 
 export type TSubtitleTableContainerProps = {

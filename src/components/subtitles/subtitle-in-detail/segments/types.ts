@@ -13,3 +13,7 @@ export type TSegmentProps = {
     segment: TSubtitleSegment;
     segmentEditHandler: (segmentId: number, segmentText: string) => void;
 };
+
+export type TSegmentSearchForm = {
+    segment_search: string;
+};

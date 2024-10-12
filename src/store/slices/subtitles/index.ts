@@ -10,6 +10,7 @@ const initialState: TStoreSubtitleSlice = {
         page: 0,
         itemsPerPage: 20,
         segments: [],
+        segmentSearch: '',
         hasNext: true,
     },
 };
@@ -58,6 +59,12 @@ const subtitlesSlice = createSlice({
             storeSubtitlesSlice.openedSubtitleSegments.segments.push(...segments);
             storeSubtitlesSlice.openedSubtitleSegments.page++;
             storeSubtitlesSlice.openedSubtitleSegments.hasNext = hasNext;
+        },
+        updateSubtitleSegmentSearch(storeSubtitlesSlice, action: PayloadAction<string>) {
+            storeSubtitlesSlice.openedSubtitleSegments = {
+                ...initialState.openedSubtitleSegments,
+                segmentSearch: action.payload,
+            };
         },
         updateSubtitleSegment(
             storeSubtitlesSlice,

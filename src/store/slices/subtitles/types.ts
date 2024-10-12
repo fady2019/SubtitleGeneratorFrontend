@@ -7,6 +7,7 @@ export type TStoreSubtitleSlice = {
         segments: Array<TSubtitleSegment>;
         page: number;
         itemsPerPage: number;
+        segmentSearch: string;
         hasNext: boolean;
     };
 };

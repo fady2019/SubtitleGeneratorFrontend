@@ -10,7 +10,7 @@ const TableHeaderCell: React.FC<React.PropsWithChildren<TTableHeaderCellProps>> 
     return (
         <th
             className={twMerge(
-                'border-b border-amber-700 bg-violet-950 p-4 first:rounded-tl-md last:rounded-tr-md',
+                'text-nowrap border-b border-amber-700 bg-violet-950 p-4 first:rounded-tl-md last:rounded-tr-md',
                 className
             )}
             {...restAttributes}

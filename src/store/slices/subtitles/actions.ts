@@ -127,7 +127,7 @@ export const deleteSubtitle = (subtitleId: string) => {
 export const fetchOpenedSubtitleNextSegmentsPage = () => {
     return async (dispatch: Dispatch) => {
         const openedSubtitleId = appStore.getState().subtitles.openedSubtitle?.id;
-        const { page, itemsPerPage, hasNext } = appStore.getState().subtitles.openedSubtitleSegments;
+        const { page, itemsPerPage, segmentSearch, hasNext } = appStore.getState().subtitles.openedSubtitleSegments;
 
         if (!openedSubtitleId || !hasNext) {
             return;
@@ -139,6 +139,7 @@ export const fetchOpenedSubtitleNextSegmentsPage = () => {
                 params: {
                     page: page + 1,
                     items_per_page: itemsPerPage,
+                    segment_search: segmentSearch,
                 },
             },
             { hideSuccessMsg: true, hideSpinner: true }
