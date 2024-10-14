@@ -18,6 +18,7 @@ const Settings = React.lazy(() => import('@/components/settings'));
 const Dashboard = React.lazy(() => import('@/components/dashboard'));
 const GenerateSubtitleContainer = React.lazy(() => import('@/components/subtitles/generate'));
 const SubtitleInDetailContainer = React.lazy(() => import('@/components/subtitles/subtitle-in-detail'));
+const NotFoundContainer = React.lazy(() => import('@/components/404'));
 
 const AppRoutes = () => {
     const hasAutoLoginDone = useSelector((store: TAppStore) => store.auth.hasAutoLoginDone);
@@ -54,7 +55,7 @@ const AppRoutes = () => {
                 <Route path="settings" element={<Settings />} />
             </Route>
 
-            <Route path="*" element={<>Not Found</>} />
+            <Route path="*" element={<NotFoundContainer />} />
         </Routes>
     );
 };
