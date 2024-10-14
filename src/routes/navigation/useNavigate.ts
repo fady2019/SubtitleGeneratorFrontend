@@ -22,7 +22,7 @@ const useNavigate = () => {
                 replace: options?.replace === undefined ? true : options?.replace,
             });
         },
-        [navigate, useManageRedirectSearchParam]
+        [navigate, manageRedirectSearchParam]
     );
 
     return customNavigate;

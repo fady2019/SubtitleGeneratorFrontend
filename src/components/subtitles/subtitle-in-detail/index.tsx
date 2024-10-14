@@ -27,7 +27,7 @@ const SubtitleInDetailContainer = () => {
         } else if (openedSubtitle) {
             prevSubtitleIdRef.current = openedSubtitle.id;
         }
-    }, [openedSubtitle]);
+    }, [openedSubtitle, navigate]);
 
     useEffect(() => {
         if (!subtitleId) {
@@ -39,7 +39,7 @@ const SubtitleInDetailContainer = () => {
         return () => {
             dispatch(storeSubtitlesSliceActions.setOpenedSubtitle(null));
         };
-    }, []);
+    }, [subtitleId, navigate, dispatch]);
 
     return <SubtitleInDetail />;
 };

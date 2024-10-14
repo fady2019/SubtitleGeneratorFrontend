@@ -28,7 +28,13 @@ const GenerateSubtitleContainer = () => {
     });
 
     const handleSubtitleGeneration: TFormOnSubmit<TGenerateSubtitleData<string>> = (values) => {
-        const subtitleData = { ...values, file: audioInputRef.current?.files?.item(0)! };
+        const file = audioInputRef.current?.files?.item(0);
+
+        if (!file) {
+            return;
+        }
+
+        const subtitleData = { ...values, file };
         dispatch(generateSubtitle(subtitleData, navigate));
     };
 

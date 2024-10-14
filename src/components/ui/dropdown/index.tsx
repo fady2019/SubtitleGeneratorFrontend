@@ -9,8 +9,8 @@ const DropdownContainer = React.forwardRef<TDropdownRef, TDropdownContainerProps
 
     const [isMenuOpen, setIsMenuOpen] = useState(initialOpenedMenu === true);
 
-    const menuControllerContainerRef = useRef<any>();
-    const menuContentContainerRef = useRef<any>();
+    const menuControllerContainerRef = useRef<Element | null | undefined>(null);
+    const menuContentContainerRef = useRef<Element | null | undefined>(null);
 
     useImperativeHandle(ref, () => {
         return {
@@ -21,8 +21,8 @@ const DropdownContainer = React.forwardRef<TDropdownRef, TDropdownContainerProps
     useEffect(() => {
         const closeMenuWhenBlur = (event: MouseEvent) => {
             if (
-                menuControllerContainerRef.current?.contains(event.target) ||
-                menuContentContainerRef.current?.contains(event.target)
+                menuControllerContainerRef.current?.contains(event.target as Node) ||
+                menuContentContainerRef.current?.contains(event.target as Node)
             ) {
                 return;
             }

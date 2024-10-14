@@ -38,7 +38,7 @@ export const fetchSubtitle = (subtitleId: string, navigate: TNavigateFunction) =
 };
 
 export const generateSubtitle = (subtitleData: TGenerateSubtitleData<File>, navigate: TNavigateFunction) => {
-    return async (_dispatch: Dispatch) => {
+    return async () => {
         const formData = new FormData();
         formData.append('title', subtitleData.title);
         formData.append('media_file', subtitleData.file);
@@ -181,8 +181,8 @@ export const editOpenedSubtitleSegment = (segmentId: number, segmentData: Partia
 };
 
 export const downloadSubtitleFile = (subtitleId: string, fileType: string) => {
-    return async (_dispatch: Dispatch) => {
-        let { response, success } = await AxiosUtil.sendRequest({
+    return async () => {
+        const { response, success } = await AxiosUtil.sendRequest({
             url: `api/subtitles/${subtitleId}/segments/as-file?file_type=${fileType}`,
             method: 'GET',
             responseType: 'blob',

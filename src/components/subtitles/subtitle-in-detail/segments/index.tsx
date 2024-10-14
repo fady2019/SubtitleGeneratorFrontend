@@ -25,7 +25,7 @@ const SegmentsContainer = () => {
         }
 
         dispatch(fetchOpenedSubtitleNextSegmentsPage());
-    }, [isLastSegmentReached]);
+    }, [isLastSegmentReached, dispatch]);
 
     useEffect(() => {
         dispatch(fetchOpenedSubtitleNextSegmentsPage());
@@ -33,7 +33,7 @@ const SegmentsContainer = () => {
         return () => {
             dispatch(storeSubtitlesSliceActions.resetSubtitleSegments());
         };
-    }, []);
+    }, [dispatch]);
 
     const handleSegmentTextEditing = (segmentId: number, segmentText: string) => {
         dispatch(editOpenedSubtitleSegment(segmentId, { text: segmentText }));

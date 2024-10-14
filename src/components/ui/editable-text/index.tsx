@@ -6,7 +6,8 @@ import { FaCheck } from 'react-icons/fa6';
 import { HiPencil } from 'react-icons/hi';
 
 const EditableTextContainer: React.FC<TEditableTextProps> = (props) => {
-    let { initText, editable, textUpdateHandler } = props;
+    const { initText, textUpdateHandler } = props;
+    let { editable } = props;
     editable ??= true;
 
     const textElementRef = useRef<HTMLParagraphElement>(null);
