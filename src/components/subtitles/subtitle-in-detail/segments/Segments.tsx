@@ -11,6 +11,10 @@ const Segments: React.FC<TSegmentsProps> = (props) => {
 
     const segments = useSelector((store: TAppStore) => store.subtitles.openedSubtitleSegments.segments);
 
+    if (segments.length === 0) {
+        return <p className="py-8 text-center text-2xl">No Segments Found!</p>;
+    }
+
     return (
         <ul className="py-8">
             {segments.map((segment, idx) => {
