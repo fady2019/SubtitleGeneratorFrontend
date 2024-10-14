@@ -1,19 +1,16 @@
-import React, { useState, useRef, useEffect, useImperativeHandle, useLayoutEffect } from 'react';
+import React, { useState, useRef, useEffect, useImperativeHandle } from 'react';
 
 import Dropdown from '@/components/ui/dropdown/Dropdown';
 
 import { TDropdownContainerProps, TDropdownRef } from '@/components/ui/dropdown/types';
 
 const DropdownContainer = React.forwardRef<TDropdownRef, TDropdownContainerProps>((props, ref) => {
-    const { menuController, menuContent, initialOpenedMenu } = props;
+    const { menuController, menuContent, menuContentContainerAttributes, initialOpenedMenu } = props;
 
     const [isMenuOpen, setIsMenuOpen] = useState(initialOpenedMenu === true);
 
-    const [menuWidth, setMenuWidth] = useState(undefined);
-    const [menuHeight, setMenuHeight] = useState(undefined);
-
-    const menuControllerRef = useRef<any>();
-    const menuContentRef = useRef<any>();
+    const menuControllerContainerRef = useRef<any>();
+    const menuContentContainerRef = useRef<any>();
 
     useImperativeHandle(ref, () => {
         return {
@@ -23,7 +20,10 @@ const DropdownContainer = React.forwardRef<TDropdownRef, TDropdownContainerProps
 
     useEffect(() => {
         const closeMenuWhenBlur = (event: MouseEvent) => {
-            if (menuControllerRef.current?.contains(event.target) || menuContentRef.current?.contains(event.target)) {
+            if (
+                menuControllerContainerRef.current?.contains(event.target) ||
+                menuContentContainerRef.current?.contains(event.target)
+            ) {
                 return;
             }
 
@@ -35,11 +35,6 @@ const DropdownContainer = React.forwardRef<TDropdownRef, TDropdownContainerProps
         return () => {
             document.body.removeEventListener('click', closeMenuWhenBlur);
         };
-    }, []);
-
-    useLayoutEffect(() => {
-        setMenuWidth(menuControllerRef.current.offsetWidth);
-        setMenuHeight(menuControllerRef.current.offsetHeight);
     }, []);
 
     const handleClick = () => {
@@ -57,13 +52,12 @@ const DropdownContainer = React.forwardRef<TDropdownRef, TDropdownContainerProps
 
     return (
         <Dropdown
-            menuWidth={menuWidth}
-            menuHeight={menuHeight}
             menuController={menuController}
             menuContent={menuContent}
+            menuContentContainerAttributes={menuContentContainerAttributes}
             isMenuOpen={isMenuOpen}
-            menuControllerRef={(node) => (menuControllerRef.current = node)}
-            menuContentRef={(node) => (menuContentRef.current = node)}
+            menuControllerContainerRef={(node) => (menuControllerContainerRef.current = node)}
+            menuContentContainerRef={(node) => (menuContentContainerRef.current = node)}
             clickHandler={handleClick}
             keyDownHandler={handleKeyDown}
         />

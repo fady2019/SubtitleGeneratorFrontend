@@ -1,25 +1,27 @@
 import React from 'react';
 
 import { TDropdownProps } from '@/components/ui/dropdown/types';
+import { twMerge } from 'tailwind-merge';
 
 const Dropdown: React.FC<TDropdownProps> = (props) => {
     const {
-        menuHeight,
-        menuWidth,
         menuController,
         menuContent,
+        menuContentContainerAttributes,
         isMenuOpen,
-        menuControllerRef,
-        menuContentRef,
+        menuControllerContainerRef,
+        menuContentContainerRef,
         clickHandler,
         keyDownHandler,
     } = props;
 
+    const { className: menuContentClassName, ...menuContentRestAttributes } = menuContentContainerAttributes || {};
+
     return (
-        <div className="relative" style={{ width: menuWidth, height: menuHeight }}>
+        <div className="relative">
             <div
-                ref={menuControllerRef}
-                className="w-max"
+                ref={menuControllerContainerRef}
+                className="flex items-center justify-center"
                 role="button"
                 tabIndex={0}
                 aria-pressed="false"
@@ -30,7 +32,14 @@ const Dropdown: React.FC<TDropdownProps> = (props) => {
             </div>
 
             {isMenuOpen && (
-                <div ref={menuContentRef} className="absolute left-1/2 z-10 mt-1.5 -translate-x-1/2 overflow-hidden">
+                <div
+                    ref={menuContentContainerRef}
+                    className={twMerge(
+                        'absolute left-1/2 z-10 mt-1.5 -translate-x-1/2 overflow-hidden',
+                        menuContentClassName
+                    )}
+                    {...menuContentRestAttributes}
+                >
                     {menuContent}
                 </div>
             )}
