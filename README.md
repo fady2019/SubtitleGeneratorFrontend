@@ -29,7 +29,7 @@ You can find the backend [**here**](https://github.com/fady2019/SubtitleGenerato
 Open the project in the terminal, then run
 
 ```bash
-npm dev
+npm run dev
 ```
 
 ## Technologies & Packages
