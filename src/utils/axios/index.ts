@@ -5,6 +5,8 @@ import { storeUISliceActions } from '@/store/slices/ui';
 
 import { TResponse, TSendRequestOptions } from '@/utils/axios/types';
 
+const SERVER_URL = import.meta.env.VITE_SERVER_URL;
+
 class AxiosUtil {
     public static async sendRequest(axiosConfig: AxiosRequestConfig, options: TSendRequestOptions = {}) {
         const { hideErrorMsg, hideSpinner, hideSuccessMsg, spinnerMessage } = options;
@@ -76,7 +78,7 @@ class AxiosUtil {
     public static initRequestInterceptor() {
         axios.interceptors.request.use(
             (config) => {
-                config.url = `http://127.0.0.1:5000/${config.url}`;
+                config.url = `${SERVER_URL}/${config.url}`;
                 return config;
             },
             (error) => Promise.reject(error)
